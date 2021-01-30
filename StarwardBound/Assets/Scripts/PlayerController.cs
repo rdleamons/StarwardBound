@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D r2d;
     CapsuleCollider2D mainCollider;
+    Animator animator;
 
     //Note: this will need to be attatched to a prefab in the future
     public CompositeCollider2D groundCollider;
@@ -29,12 +30,15 @@ public class PlayerController : MonoBehaviour
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
         mainCollider = GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
         r2d.freezeRotation = true;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
 
-        
+        animator.SetBool("IsMoving", false);
+        animator.SetBool("IsJumping", false);
+        animator.SetBool("IsGrounded", isGrounded);
     }
 
     // Update is called once per frame
@@ -50,12 +54,15 @@ public class PlayerController : MonoBehaviour
             if (isGrounded || r2d.velocity.magnitude < 0.01f)
             {
                 moveDirection = 0;
+                animator.SetBool("IsMoving", false);
             }
         }
 
         // Change facing direction
         if (moveDirection != 0)
         {
+            animator.SetBool("IsMoving", true);
+
             if (moveDirection > 0 && !facingRight)
             {
                 facingRight = true;
@@ -71,6 +78,7 @@ public class PlayerController : MonoBehaviour
         // Jumping
         if (Input.GetButtonDown("Jump") && jumpCount < 1)
         {
+            animator.SetBool("IsJumping", true);
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
             jumpCount++;
         }
@@ -94,14 +102,17 @@ public class PlayerController : MonoBehaviour
 
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
         isGrounded = false;
+        animator.SetBool("IsGrounded", isGrounded);
         if (colliders.Length > 0)
         {
             for (int i = 0; i < colliders.Length; i++)
             {
                 if (colliders[i] == groundCollider)
                 {
+                    animator.SetBool("IsJumping", false);
                     jumpCount = 0;
                     isGrounded = true;
+                    animator.SetBool("IsGrounded", isGrounded);
                     break;
                 }
             }
