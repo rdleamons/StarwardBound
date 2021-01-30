@@ -34,7 +34,7 @@ public class AcornDestroy : MonoBehaviour
 
     void ShowHitText()
     {
-        Instantiate(hitTextPrefab, transform.position, Quaternion.identity, transform);
+        Instantiate(hitTextPrefab, transform.position, transform.rotation, transform);
     }
 
 }

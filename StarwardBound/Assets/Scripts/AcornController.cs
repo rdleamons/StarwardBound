@@ -20,14 +20,14 @@ public class AcornController : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
 
         while (true)
         {
             Vector3 spwanPosition = new Vector3(Random.Range(-maxWidth, maxWidth), transform.position.y, 0.0f);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(acorn, spwanPosition, spawnRotation);
-            yield return new WaitForSeconds(Random.Range(1.0f, 2.0f));
+            yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
         }
     }
 }
