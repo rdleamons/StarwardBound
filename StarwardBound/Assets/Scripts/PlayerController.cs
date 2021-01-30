@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 3.4f;
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;
+    public int jumpCount = 0;
 
     bool facingRight = true;
     float moveDirection = 0;
@@ -32,6 +33,8 @@ public class PlayerController : MonoBehaviour
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
+
+        
     }
 
     // Update is called once per frame
@@ -66,14 +69,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // Jumping
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && jumpCount < 1)
         {
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+            jumpCount++;
         }
 
         if(Input.GetKey(KeyCode.LeftShift) && !isGrounded)
         {
-            //gravityScale = 0.25f;
+            gravityScale = 0.25f;
             r2d.velocity = 0.90f * r2d.velocity;
         }
     }
@@ -96,6 +100,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (colliders[i] == groundCollider)
                 {
+                    jumpCount = 0;
                     isGrounded = true;
                     break;
                 }
