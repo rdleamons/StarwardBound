@@ -13,8 +13,8 @@ public class AcornController : MonoBehaviour
     {
         Vector3 upperCorner = new Vector3(Screen.width, Screen.height, 0.0f);
         Vector3 targetWidth = cam.ScreenToWorldPoint(upperCorner);
-        float ballWidth = acorn.GetComponent<Renderer>().bounds.extents.x;
-        maxWidth = targetWidth.x - ballWidth;
+        float acornWidth = acorn.GetComponent<Renderer>().bounds.extents.x;
+        maxWidth = targetWidth.x - acornWidth;
         StartCoroutine(Spawn());
     }
 

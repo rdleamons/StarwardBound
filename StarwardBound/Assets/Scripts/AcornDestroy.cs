@@ -6,11 +6,17 @@ using UnityEngine.SceneManagement;
 public class AcornDestroy : MonoBehaviour
 {
     public int hitCount = 0;
+    public GameObject hitTextPrefab;
 
     public void OnTriggerEnter2D(Collider2D col)
     {
         if(col.CompareTag("Acorn"))
         {
+            if(hitTextPrefab)
+            {
+                ShowHitText();
+            }
+            
             hitCount++;
             Debug.Log("Hit");
             Destroy(col.gameObject);
@@ -24,6 +30,11 @@ public class AcornDestroy : MonoBehaviour
             Debug.Log("Restart");
             SceneManager.LoadScene("Main");
         }
+    }
+
+    void ShowHitText()
+    {
+        Instantiate(hitTextPrefab, transform.position, Quaternion.identity, transform);
     }
 
 }
