@@ -70,6 +70,12 @@ public class PlayerController : MonoBehaviour
         {
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         }
+
+        if(Input.GetKey(KeyCode.LeftShift) && !isGrounded)
+        {
+            //gravityScale = 0.25f;
+            r2d.velocity = 0.90f * r2d.velocity;
+        }
     }
 
 
