@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
     CapsuleCollider2D mainCollider;
 
     //Note: this will need to be attatched to a prefab in the future
-    public BoxCollider2D groundCollider;
-    public BoxCollider2D platformCollider;
+    public CompositeCollider2D groundCollider;
+    //public BoxCollider2D platformCollider;
     Transform t;
 
     // Use this for initialization
@@ -89,11 +89,6 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < colliders.Length; i++)
             {
                 if (colliders[i] == groundCollider)
-                {
-                    isGrounded = true;
-                    break;
-                }
-                else if (colliders[i] == platformCollider)
                 {
                     isGrounded = true;
                     break;
