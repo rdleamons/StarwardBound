@@ -312,6 +312,7 @@ MonoBehaviour:
   jumpHeight: 5
   gravityScale: 1.5
   mainCamera: {fileID: 519420031}
+  groundCollider: {fileID: 2068139168}
 --- !u!212 &1146122458
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -513,7 +514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1367315119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +613,7 @@ GameObject:
   - component: {fileID: 2068139168}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

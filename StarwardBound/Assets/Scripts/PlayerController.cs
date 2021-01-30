@@ -16,9 +16,13 @@ public class PlayerController : MonoBehaviour
     bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
+
     Vector3 cameraPos;
     Rigidbody2D r2d;
     CapsuleCollider2D mainCollider;
+
+    //Note: this will need to be attatched to a prefab in the future
+    public BoxCollider2D groundCollider;
     Transform t;
 
     // Use this for initialization
@@ -75,12 +79,13 @@ public class PlayerController : MonoBehaviour
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
         }
 
-        // Camera follow
+            // Camera follow
         if (mainCamera)
         {
             mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
         }
     }
+
 
     void FixedUpdate()
     {
@@ -95,7 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i] != mainCollider)
+                if (colliders[i] == groundCollider)
                 {
                     isGrounded = true;
                     break;
