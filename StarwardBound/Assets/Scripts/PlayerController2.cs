@@ -1,85 +1,113 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController2 : MonoBehaviour
 {
-    public float speed = 100.0f;
-    public float jumpForce = 350.0f;
-    public float airDrag = 0.8f;
-    public Transform bottomTransform;
+    // Move player in 2D space
+    public float maxSpeed = 3.4f;
+    public float jumpHeight = 6.5f;
+    public float gravityScale = 1.5f;
+    public Camera mainCamera;
 
-    private Rigidbody2D body;
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
+    bool facingRight = true;
+    float moveDirection = 0;
+    bool isGrounded = false;
 
-    private Vector2 currentVelocity;
-    private float previousPositionY;
+    Vector3 cameraPos;
+    Rigidbody2D r2d;
+    CapsuleCollider2D mainCollider;
 
-    private bool isOnGround;
+    //Note: this will need to be attatched to a prefab in the future
+    public BoxCollider2D groundCollider;
+    Transform t;
 
-
-    // Start is called before the first frame update
+    // Use this for initialization
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        t = transform;
+        r2d = GetComponent<Rigidbody2D>();
+        mainCollider = GetComponent<CapsuleCollider2D>();
+        r2d.freezeRotation = true;
+        r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        r2d.gravityScale = gravityScale;
+        facingRight = t.localScale.x > 0;
+
+        if (mainCamera)
+        {
+            cameraPos = mainCamera.transform.position;
+        }
     }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        Move();
-        HandleCollisions();
-        previousPositionY = transform.position.y;
-    }
-
-    private void Move()
-    {
-        float velocity = Input.GetAxis("Horizontal") * speed;
-        bool isJumping = Input.GetKey(KeyCode.Space);
-
-        animator.SetFloat("Speed", Mathf.Abs(velocity));
-
-        if (!isOnGround)
+        // Movement controls
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(r2d.velocity.x) > 0.01f))
         {
-            velocity *= airDrag;
+            moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
         }
-
-        // Horizontal Movement
-        body.velocity = Vector2.SmoothDamp(body.velocity, new Vector2(velocity, body.velocity.y), ref currentVelocity, 0.02f);
-
-        // Initiate Jump
-        if (isOnGround && isJumping)
+        else
         {
-            animator.SetBool("IsJumping", true);
-            isOnGround = false;
-            body.AddForce(new Vector2(0, jumpForce));
-        }
-
-        // Cancel Jump
-        if (!isOnGround && !isJumping && body.velocity.y > 0.01f)
-        {
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y * 0.95f);
-        }
-
-        if (velocity < 0) spriteRenderer.flipX = true;
-        else if (velocity > 0)
-            spriteRenderer.flipX = false;
-    }
-
-    private void HandleCollisions()
-    {
-        bool wasOnGround = isOnGround;
-        isOnGround = false;
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(bottomTransform.position, 0.6f);
-        foreach (var collider in colliders)
-        {
-            if (collider.gameObject != gameObject)
+            if (isGrounded || r2d.velocity.magnitude < 0.01f)
             {
-                isOnGround = true;
+                moveDirection = 0;
             }
         }
+
+        // Change facing direction
+        if (moveDirection != 0)
+        {
+            if (moveDirection > 0 && !facingRight)
+            {
+                facingRight = true;
+                t.localScale = new Vector3(Mathf.Abs(t.localScale.x), t.localScale.y, transform.localScale.z);
+            }
+            if (moveDirection < 0 && facingRight)
+            {
+                facingRight = false;
+                t.localScale = new Vector3(-Mathf.Abs(t.localScale.x), t.localScale.y, t.localScale.z);
+            }
+        }
+
+        // Jumping
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
+        }
+
+        // Camera follow
+        if (mainCamera)
+        {
+            mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
+        }
+    }
+
+
+    void FixedUpdate()
+    {
+        Bounds colliderBounds = mainCollider.bounds;
+        float colliderRadius = mainCollider.size.x * 0.4f * Mathf.Abs(transform.localScale.x);
+        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
+        // Check if player is grounded
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
+        //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
+        isGrounded = false;
+        if (colliders.Length > 0)
+        {
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i] == groundCollider)
+                {
+                    isGrounded = true;
+                    break;
+                }
+
+            }
+        }
+
+        // Apply movement velocity
+        r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
     }
 }
