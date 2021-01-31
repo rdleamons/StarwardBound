@@ -7,6 +7,7 @@ public class AcornDestroy : MonoBehaviour
 {
     public int hitCount = 0;
     public GameObject hitTextPrefab;
+    public Health health;
 
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -16,7 +17,8 @@ public class AcornDestroy : MonoBehaviour
             {
                 ShowHitText();
             }
-            
+
+            health.health--;
             hitCount++;
             Debug.Log("Hit");
             Destroy(col.gameObject);
