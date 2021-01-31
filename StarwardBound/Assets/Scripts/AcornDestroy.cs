@@ -7,7 +7,10 @@ public class AcornDestroy : MonoBehaviour
 {
     public int hitCount = 0;
     public GameObject hitTextPrefab;
+    public PlayerController player;
+
     public Health health;
+    
 
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -36,7 +39,15 @@ public class AcornDestroy : MonoBehaviour
 
     void ShowHitText()
     {
-        Instantiate(hitTextPrefab, transform.position, transform.rotation, transform);
+        if(player.transform.localScale.x < 0)
+        {
+            GameObject hitText = Instantiate(hitTextPrefab, transform.position, transform.rotation, transform);
+            hitText.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            GameObject hitText = Instantiate(hitTextPrefab, transform.position, transform.rotation, transform);
+        }
     }
 
 }

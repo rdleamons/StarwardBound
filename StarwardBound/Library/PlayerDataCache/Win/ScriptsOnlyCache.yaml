@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - AcornController
     - AcornDestroy
     - ChangeScenes
+    - Health
     - MainMenu
     - ObjectDestroyer
     - PlayerController
@@ -19,10 +20,13 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -52,7 +56,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
-    - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
@@ -79,21 +82,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1824}
     - Class: 114
-      Script: {instanceID: 2546}
+      Script: {instanceID: 2548}
     - Class: 114
-      Script: {instanceID: 2712}
+      Script: {instanceID: 2714}
     - Class: 114
-      Script: {instanceID: 2754}
+      Script: {instanceID: 2756}
     - Class: 114
-      Script: {instanceID: 2890}
+      Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 3114}
+      Script: {instanceID: 3116}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 3578}
+      Script: {instanceID: 3580}
     - Class: 114
-      Script: {instanceID: 3850}
+      Script: {instanceID: 3852}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -148,31 +151,43 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 1520}
+    - Class: 114
       Script: {instanceID: 1580}
     - Class: 114
       Script: {instanceID: 1642}
     - Class: 114
       Script: {instanceID: 1824}
     - Class: 114
-      Script: {instanceID: 2496}
+      Script: {instanceID: 2260}
     - Class: 114
-      Script: {instanceID: 2562}
+      Script: {instanceID: 2498}
     - Class: 114
-      Script: {instanceID: 2622}
+      Script: {instanceID: 2548}
     - Class: 114
-      Script: {instanceID: 2788}
+      Script: {instanceID: 2564}
     - Class: 114
-      Script: {instanceID: 3702}
+      Script: {instanceID: 2624}
     - Class: 114
-      Script: {instanceID: 3738}
+      Script: {instanceID: 2714}
     - Class: 114
-      Script: {instanceID: 4194}
+      Script: {instanceID: 2790}
     - Class: 114
-      Script: {instanceID: 5172}
+      Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 5202}
+      Script: {instanceID: 3116}
     - Class: 114
-      Script: {instanceID: 5238}
+      Script: {instanceID: 3704}
+    - Class: 114
+      Script: {instanceID: 3740}
+    - Class: 114
+      Script: {instanceID: 4196}
+    - Class: 114
+      Script: {instanceID: 5174}
+    - Class: 114
+      Script: {instanceID: 5204}
+    - Class: 114
+      Script: {instanceID: 5240}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -182,6 +197,10 @@ ScriptsOnlyBuild:
     - Class: 212
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
@@ -209,8 +228,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1520}
     - Class: 114
-      Script: {instanceID: 1730}
-    - Class: 114
       Script: {instanceID: 1824}
     - Class: 114
       Script: {instanceID: 1834}
@@ -219,21 +236,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2156}
     - Class: 114
-      Script: {instanceID: 2546}
+      Script: {instanceID: 2548}
     - Class: 114
-      Script: {instanceID: 2712}
+      Script: {instanceID: 2714}
     - Class: 114
-      Script: {instanceID: 2754}
+      Script: {instanceID: 2756}
     - Class: 114
-      Script: {instanceID: 2890}
+      Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 3114}
+      Script: {instanceID: 3116}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 4434}
+      Script: {instanceID: 4436}
     - Class: 114
-      Script: {instanceID: 4788}
+      Script: {instanceID: 4790}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -437,6 +454,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.PixelPerfect.dll
     namespaceName: UnityEngine.U2D
     className: CinemachinePixelPerfect
+  - hash:
+      serializedVersion: 2
+      Hash: de3b64f1e17b5aeaad8f063456525030
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Health
   - hash:
       serializedVersion: 2
       Hash: c1d728126ff1918728036c59106d32b2
@@ -1045,13 +1068,13 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 4eeb81e649856523d54827de3fdbd38a
+      Hash: 7ca1abe4506d83e9ee36543ec3eebe94
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
   - hash:
       serializedVersion: 2
-      Hash: 1aeef15053552590a89a7300436b4a9f
+      Hash: eaf983ec7857e49cd170284ce639d466
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AcornDestroy
