@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - Health
     - MainMenu
     - ObjectDestroyer
+    - PauseMenu
     - PlayerController
     - PopupText
     - ReturnToMain
@@ -58,6 +59,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
+    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/Credits.unity:
     - Class: 1
@@ -96,6 +98,61 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3116}
     - Class: 114
       Script: {instanceID: 3228}
+    - Class: 114
+      Script: {instanceID: 3852}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/HowToPlay.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1520}
+    - Class: 114
+      Script: {instanceID: 1824}
+    - Class: 114
+      Script: {instanceID: 2548}
+    - Class: 114
+      Script: {instanceID: 2714}
+    - Class: 114
+      Script: {instanceID: 2756}
+    - Class: 114
+      Script: {instanceID: 2892}
+    - Class: 114
+      Script: {instanceID: 3116}
+    - Class: 114
+      Script: {instanceID: 3228}
+    - Class: 114
+      Script: {instanceID: 3580}
     - Class: 114
       Script: {instanceID: 3852}
     - Class: 115
@@ -164,6 +221,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1824}
     - Class: 114
+      Script: {instanceID: 2156}
+    - Class: 114
       Script: {instanceID: 2260}
     - Class: 114
       Script: {instanceID: 2498}
@@ -182,6 +241,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3116}
     - Class: 114
+      Script: {instanceID: 3228}
+    - Class: 114
       Script: {instanceID: 3704}
     - Class: 114
       Script: {instanceID: 3740}
@@ -193,7 +254,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5204}
     - Class: 114
       Script: {instanceID: 5240}
+    - Class: 114
+      Script: {instanceID: 22234}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -405,7 +470,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: ed7ffeda6d3b35ed5655100cbcd30084
+      Hash: fd7179a895b69689fe522d5a280abdd7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainMenu
@@ -1135,9 +1200,22 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: 251737da896d5b5dfe276fec612870d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 50bacd4987563c1f21ee5513c255bd0a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Pause
   platform: 5
   scenePathNames:
   - Assets/Scenes/StartMenu.unity
   - Assets/Scenes/Credits.unity
+  - Assets/Scenes/HowToPlay.unity
   - Assets/Scenes/Main.unity
   playerPath: C:/Users/rebek/Desktop/SB_TestBuild/StarwardBound.exe
