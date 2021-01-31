@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public Button newGameButton;
     public Button creditsButton;
     public Button quitButton;
+    public Button htpButton;
 
     public void StartGame()
     {
@@ -20,6 +21,11 @@ public class MainMenu : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene("Credits");
+    }
+
+    public void HTP()
+    {
+        SceneManager.LoadScene("HowToPlay");
     }
 
     public void QuitGame()

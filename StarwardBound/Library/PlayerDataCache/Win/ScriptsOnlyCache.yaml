@@ -58,7 +58,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
-    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/Credits.unity:
     - Class: 1
@@ -97,8 +96,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3116}
     - Class: 114
       Script: {instanceID: 3228}
-    - Class: 114
-      Script: {instanceID: 3580}
     - Class: 114
       Script: {instanceID: 3852}
     - Class: 115
