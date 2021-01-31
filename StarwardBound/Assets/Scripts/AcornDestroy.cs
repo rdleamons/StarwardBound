@@ -10,12 +10,17 @@ public class AcornDestroy : MonoBehaviour
     public PlayerController player;
 
     public Health health;
-    
+    private AudioSource acornSound;
 
+    private void Start()
+    {
+        acornSound = GetComponent<AudioSource>();
+    }
     public void OnTriggerEnter2D(Collider2D col)
     {
         if(col.CompareTag("Acorn"))
         {
+            acornSound.Play();
             if(hitTextPrefab)
             {
                 ShowHitText();
